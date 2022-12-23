@@ -3,52 +3,54 @@
     padding: 0;
     list-style: none;
     text-decoration: none;
-}
-
-h1{
-    color:royalblue;
-}
-
-nav{
+  }
+  
+  h1{
+    color: royalblue;
+  }
+  
+  nav{
     display: flex;
-    background-color: rgb(47, 59, 96);
+    background-color: rgb(26, 51, 116);
     height: 50px;
-}
-
-nav > svg{
+  }
+  
+  nav > svg {
     display: none;
-}
-
-nav > ul{
+  }
+  
+  nav > ul {
     display: flex;
-}
-
-nav > ul > li, nav a{
-    color: whitesmoke;
+  }
+  
+  nav > ul > li, nav a{
+    color:whitesmoke;
     padding: 15px;
-    
-}
-
-#menu-button{
+  }
+  
+  #menu-button{
     color: white;
     font-size: 40px;
-}
-
-@media (max-width:600px){
+  }
+  
+  /* ctrl  + F5 */
+  /* hot raload */
+  
+  @media (max-width:600px){
     nav > svg{
-        display: block;
-        fill: white;
-        width: 25px;
+      display: block;
+      fill: white;
+      width: 25px;
     }
-
-    nav > ul {
-        flex-direction: column;
-        position: absolute;
-        background-color: rgb(68, 83, 130);
-        top: 50px;
-        min-height: 100vh;
-        min-width: 50%;
-        left: -100%;
-        transition: all 0.2s ease-in-out;
+  
+    nav > ul{
+      flex-direction: column;
+      position: absolute;
+      background-color: rgb(68, 83, 130);
+      top:50px;
+      min-width: 50%;
+      min-height: 100vh;
+     
+      transition: all .2s ease-in-out ;
     }
-}
+  }

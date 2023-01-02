@@ -16,7 +16,12 @@
         <?= isset($_SESSION) && isset($_SESSION['id']) ? "Profil" :"Se connecter" ?>
       </a>
     </li>
+    <?=
+     isset($_SESSION) && isset($_SESSION['id']) ?
+     "<li><a href='/routes/logout.php'>Se deconnecter</a></li>": ""  
+     ?>
   </ul>
 </nav>
 
 <script src="/scripts/navbar.js" ></script>
+

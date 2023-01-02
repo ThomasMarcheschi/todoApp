@@ -12,14 +12,26 @@ if(!(isset($_POST['email'], $_POST['password']))){
 $user = new UserController($_POST['email'], $_POST['password']);
 
 if(!($user -> isDataValid())){
-  header("Location: /login.php?" . $user -> getErrors());
+  header("Location: /login.php?connexion=error&" . $user -> getErrors());
   die();
 }
 
 //Verifier si l'utilisateur existe
 if(!$user -> exist()){
-  header("Location: /login.php?emailError=EmailDosntExist" );
+  header("Location: /login.php?connexion=error&emailError=EmailDosntExist" );
+  die();
 }
+
+//Implementer la méthode:
+//1. Faire une requete vers la BD avec email.
+//2. Tester si le mot de passe recu est le meme que celui la DB return true sinon false.
+
+if(!$user -> isPasswordCorrect()){
+  header("Location: /login.php?connexion=error&passwordError=PasswordIncorrect" );
+  die();
+}
+
+
 
 $_SESSION["email"] = $user ->getEmail();
 $_SESSION["id"] = $user -> getId();

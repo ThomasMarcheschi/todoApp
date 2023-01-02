@@ -9,11 +9,15 @@
     if($user -> isDataValid()){
       //Todo: Tester si l'utilisateur s'est deja inscrit
       //ajouter le user dans la DB:
+      if($user -> exist()){
+        header('Location: /login?inscription=error&emailErrorExist');
+        die();
+      }
       $user -> signupUser();
-      header('Location: /login.php');
+
     }else{
       $returnData = $user -> getErrors();
-      header('Location: /login.php?' . $returnData);
+      header('Location: /login.php?inscription=error&' . $returnData);
     }
 
   }else{

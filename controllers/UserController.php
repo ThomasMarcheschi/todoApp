@@ -1,12 +1,15 @@
 <?php
 
-include_once "../models/UserModel.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/models/UserModel.php";
+include_once $_SERVER['DOCUMENT_ROOT'] . "/controllers/TodoController.php";
+
 class UserController{
   private $email;
   private $password;
   private $id;
   private $avatarURL;
   private $role;
+  private $todos = [];
 
   private $userModel;
 
@@ -121,13 +124,50 @@ class UserController{
 
   static function createUserFromId($id){
     $userFromDB = UserModel::fetchByID($id);
-   
-    return $userFromDB;
+    $controller = new self($userFromDB['email'], $userFromDB['password']);
+    $controller -> id = $id;
+    $controller -> role = $userFromDB['role'];
+    $controller -> avatarURL = $userFromDB['avatar'];
+    
+    $controller -> todos = TodoController::fetchAll($id);
+    
+    return $controller;
   }
 
   function isImageValid($avatar){
     $imageInfo = pathinfo($avatar['name']);
 
-    return in_array($imageInfo['extension'], array('jpg', 'jpeg', 'png', 'gif'));
+    return in_array($imageInfo['extension'], array('jpg', 'jpeg', 'png', 'gif', 'svg'));
+  }
+
+  function saveImage($avatar){
+    $imageInfo = pathinfo($avatar['name']);
+    $image = $_SESSION['id'].'.'.$imageInfo['extension'];
+    copy($avatar['tmp_name'], '../images/users/'. $image);
+
+    //Utiliser le model pour mettre a jour user dans la DB.
+    $this ->userModel -> saveImageToDB($image);
+    return $image;
+  }
+
+  function addTodo($todo){
+    $todoController = new TodoController($todo, $this -> id);
+
+    $todoController -> addTodo();
+  }
+
+  /**
+   * Get the value of todos
+   */
+  public function getTodos(){
+    return $this->todos;
+  }
+
+  function validateTodo($todoID){
+    TodoController::validateTodo($todoID);
+  }
+
+  function removeTodo($todoID){
+    TodoController::removeTodo($todoID);
   }
 }

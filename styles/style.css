@@ -1,114 +1,167 @@
 *{
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    text-decoration: none;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+}
+
+h1{
+  color: royalblue;
+}
+
+nav{
+  display: flex;
+  background-color: rgb(26, 51, 116);
+  height: 50px;
+}
+
+nav > svg {
+  display: none;
+}
+
+nav > ul {
+  display: flex;
+}
+
+nav > ul > li, nav a{
+  color:whitesmoke;
+  padding: 15px;
+}
+
+#menu-button{
+  color: white;
+  font-size: 40px;
+  display: none;
+}
+
+.error{
+  color:red;
+  font-size: 0.9em;
+}
+
+form{
+  background-color: rgb(232, 232, 232);
+  padding: 1em;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 1em 0;
+}
+
+input{
+  margin: 0.5em 0;
+  padding: 0.5em;
+  border: none;
+  border-radius: 0.5em;
+}
+
+input:focus{
+  outline: none;
+}
+
+button{
+  background-color: rgb(26, 51, 116);
+  padding: 0.3em;
+  min-width: 100px;
+  color:whitesmoke;
+  border-radius: 0.5em;
+  margin: 0.5em 0;
+}
+
+.inputError{
+  border: 1px solid red;
+}
+
+.profil-infos{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+#avatar{
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 100%;
+  border: 1px solid rgb(26, 51, 116);
+}
+
+.todoNotDone{
+  border-bottom: 2px solid red;
+}
+
+.todoDone{
+  border-bottom: 2px solid green;
+}
+
+.todo{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1em;
+  margin: 1em;
+}
+
+.todo form{
+  background-color: transparent;
+  padding: 0;
+  margin: 0;
+}
+
+.todo button{
+  background-color: transparent;
+  width: 20px;
+  min-width:40px;
+  cursor: pointer;
+  padding: 0;
+  margin: 0;
+}
+
+.todo button:hover{
+  background-color: rgba(60, 246, 60, 0.275);
+}
+
+.todo img{
+  width: 20px;
+}
+
+.todo-controls{
+  display: flex;
+  background-color: transparent;
+}
+
+/* ctrl  + F5 */
+/* hot raload */
+
+@media (max-width:600px){
+  nav > svg{
+    display: block;
+    fill: white;
+    width: 25px;
   }
-  
-  h1{
-    color: royalblue;
-  }
-  
-  nav{
-    display: flex;
-    background-color: rgb(26, 51, 116);
-    height: 50px;
-  }
-  
-  nav > svg {
-    display: none;
-  }
-  
-  nav > ul {
-    display: flex;
-  }
-  
-  nav > ul > li, nav a{
-    color:whitesmoke;
-    padding: 15px;
-  }
-  
   #menu-button{
-    color: white;
-    font-size: 40px;
-    display: none;
-  }
-  
-  .error{
-    color: red;
-    font-size: 0.9em;
+    display: initial;
   }
 
-  form{
-    background-color: rgb(213, 213, 213);
-    padding: 1px;
-    display: flex;
+  nav > ul{
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin: 1em 0;
+    position: absolute;
+    background-color: rgb(68, 83, 130);
+    top:50px;
+    min-width: 50%;
+    min-height: 100vh;
+   
+    transition: all .2s ease-in-out ;
   }
+}
 
-  input{
-    margin: 0.5em 0;
-    padding: 0.5em;
-    border: none;
-    border-radius: 0.5em;
-  }
-
-  input:focus{
-    outline: none;
-  }
-
-  button{
-    background-color: rgb(26, 51, 116);
-    padding: 0.3em;
-    min-width: 100px;
-    color: whitesmoke;
-    border-radius: 0.5em;
-    margin: 0.5em 0;
-  }
-
-  .inputError{
-    border:  1px solid red;
-  }
-
-  .profil-info{
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  #avatar{
-    width: 100%;
-    max-width: 200px;
-    border-radius: 100%;
-    border: 1px solid rgb(26, 51, 116);
-  }
-  /* ctrl  + F5 */
-  /* hot raload */
-  
-  @media (max-width:600px){
-    nav > svg{
-      display: block;
-      fill: white;
-      width: 25px;
-    }
-    
-    #menu-button{
-      display: initial;
-    }
-
-    nav > ul{
-      flex-direction: column;
-      position: absolute;
-      background-color: rgb(68, 83, 130);
-      top:50px;
-      min-width: 50%;
-      min-height: 100vh;
-     
-      transition: all .2s ease-in-out ;
-    }
-  }
+/* 
+Créer un "navbar.js" et ajouter la balise '<script>' dans 'navbar.php'.
+//1. Sélectionner le bouton du menu et lui ajouter un 'eventListener()'
+//2. Selectionner le menu:
+//  2.1 Si left est a 0px, on change a -100%
+//  2.2 sinon on change a 0px
+*/

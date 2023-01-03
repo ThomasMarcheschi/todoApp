@@ -47,4 +47,11 @@ class UserModel extends DB{
     $userFromDB = $stmt -> fetch(PDO::FETCH_ASSOC);
     return $userFromDB;
   }
+
+  function saveImageToDB($image){
+    $stmt = $this -> getConnect() -> prepare("UPDATE users SET avatar=? WHERE email=?");
+    $stmt ->bindParam(1, $image);
+    $stmt ->bindParam(2, $this -> email);
+    $stmt ->execute();
+  }
 }
